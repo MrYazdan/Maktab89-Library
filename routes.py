@@ -1,25 +1,5 @@
-class Router:
-    """
-        routes: List[Route]
-    """
-    pass
+from core.router import Route, CallBack
 
-
-class CallBack:
-    """
-        package: None | str
-        callable: str | Callable
-        arg & kwargs
-    """
-    pass
-
-
-class Route:
-    """
-        name: str,
-        callback: Callback | None,
-        description: str | None,
-        epilog: str | None,
-        parent: Optional,
-        children: None | List[Route]
-    """
+# routes = Route(
+#     "Main", CallBack("salam", "file.views")
+# )
