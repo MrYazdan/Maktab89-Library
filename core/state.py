@@ -14,3 +14,7 @@ class StateManager:
     @classmethod
     def delete_last_route_name(cls) -> None:
         cls.__routes.pop()
+
+    @classmethod
+    def login_status(cls) -> bool:
+        return bool(cls.__user)
