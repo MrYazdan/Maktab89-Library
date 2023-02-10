@@ -6,4 +6,5 @@ def clear() -> None:
 
 
 def banner(name: str) -> None:
+    clear()
     print("=" * 42, name.title().center(42), "=" * 42, sep="\n")

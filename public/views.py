@@ -1,8 +1,8 @@
-def setting():
+def setting(route):
     pass
 
 
-def about():
+def about(route):
 
     print("Maktab-89 Library cli")
     print("Version : 0.1")

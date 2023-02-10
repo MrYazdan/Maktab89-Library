@@ -1,6 +1,9 @@
+from users.models import User
+
+
 class StateManager:
     __routes = []
-    __user = None
+    __user: None | User = None
 
     @classmethod
     def get_current_route_name(cls) -> str:
@@ -18,3 +21,15 @@ class StateManager:
     @classmethod
     def login_status(cls) -> bool:
         return bool(cls.__user)
+
+    @classmethod
+    def set_user(cls, user: User) -> None:
+        cls.__user = user
+
+    @classmethod
+    def get_user(cls) -> User:
+        return cls.__user
+
+    @classmethod
+    def logout(cls) -> None:
+        cls.__user = None

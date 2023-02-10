@@ -3,7 +3,8 @@ from typing import Callable
 from importlib import import_module
 
 from core.state import StateManager
-from core.utils import banner, clear
+from core.utils import banner
+from auth.utils import check_logged_in_user
 
 
 class CallBack:
@@ -64,7 +65,6 @@ class Route:
     def _get_route(self) -> Route:
         while True:
             try:
-                clear()
                 banner(StateManager.get_current_route_name())
                 print(self.description or " ", end="\n\n")
 
@@ -82,7 +82,6 @@ class Route:
                     route = children[index] if index != -1 else self.parent
 
                     if not route:
-                        clear()
                         banner("Exit")
 
                         if input("Do you want to exit ? [y|N] : ").strip().lower()[0] == "y":
@@ -96,7 +95,6 @@ class Route:
                     return self
 
             except (ValueError, IndexError, KeyboardInterrupt, AssertionError):
-                clear()
                 banner("Error !")
                 input("Please enter valid number. \nPress Enter to continue ...")
                 continue
@@ -113,11 +111,9 @@ class Route:
             route()
         else:
             try:
-                clear()
                 banner(route.name)
-                route.callback and route.callback()
+                route.callback and route.callback(route)
             except Exception as e:
-                clear()
                 banner("Error !")
             input(f"\nPress Enter back to '{route.parent.name}' ...")
             StateManager.delete_last_route_name()
@@ -132,6 +128,7 @@ class Router:
     def __init__(self, main_route: Route):
         self.main_route = main_route
         StateManager.add_route_name(main_route.name)
+        check_logged_in_user()
 
     def __call__(self, *args, **kwargs):
         self.main_route(*args, **kwargs)

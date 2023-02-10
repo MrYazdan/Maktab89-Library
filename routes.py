@@ -9,7 +9,10 @@ router = Router(
             Route("Your books", CallBack("your_books", "library.views"), condition=StateManager.login_status),
             Route("Add book", CallBack("add_book", "library.views"), condition=StateManager.login_status),
         ]),
-        Route("Profile", CallBack("profile", "users.views"), condition=StateManager.login_status),
+        Route("Profile", condition=StateManager.login_status, children=[
+            Route("Show profile", CallBack("profile", "users.views")),
+            Route("Change password", CallBack("change_password", "users.views")),
+        ]),
         Route("Login", CallBack("login", "users.views"), condition=lambda: not StateManager.login_status()),
         Route("Logout", CallBack("logout", "users.views"), condition=StateManager.login_status),
         Route("Register", CallBack("register", "users.views"), condition=lambda: not StateManager.login_status()),
