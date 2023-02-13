@@ -6,7 +6,7 @@
 
 - 🗂 Casscade routing
 
-- 📦 Components base
+- 📦 Packages and Components base
 
 - ⚡ State Management via OOP
 
