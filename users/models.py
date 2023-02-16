@@ -1,4 +1,4 @@
-from core.models import BaseModel
+from core.models import BaseModel, create_tables
 from peewee import CharField
 
 
@@ -9,3 +9,5 @@ class User(BaseModel):
     def __str__(self):
         return f"<U:{self.id}> username: {self.username}"
 
+
+create_tables([User])

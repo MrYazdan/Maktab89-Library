@@ -1,5 +1,5 @@
 from peewee import CharField, ForeignKeyField, IntegerField
-from core.models import BaseModel
+from core.models import BaseModel, create_tables
 from users.models import User
 
 
@@ -10,3 +10,6 @@ class Book(BaseModel):
 
     def __str__(self):
         return f"<B:{self.id}> name: {self.name}, author: {self.author}, pages: {self.pages}"
+
+
+create_tables([Book])
